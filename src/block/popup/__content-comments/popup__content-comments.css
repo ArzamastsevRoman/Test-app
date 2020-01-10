@@ -1,0 +1,12 @@
+.popup__content-comments {
+    margin: 34px 0 32px 14px;
+    min-width: 190px;
+}
+
+@media screen and (max-width: 767px) {
+    .popup__content-comments {
+        margin: 25px 22px 0;
+        width: calc(100% - 44px);
+        height: 100%;
+    }
+}

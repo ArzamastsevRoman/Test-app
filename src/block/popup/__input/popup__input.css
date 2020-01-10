@@ -1,0 +1,17 @@
+.popup__input {
+    width: calc(100% - 11px);
+    height: 100%;
+    padding: 0;
+    border: 0;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+    align-items: center;
+    padding-left: 11px;
+}
+
+.popup__input::placeholder {
+    color: #ccc;
+}

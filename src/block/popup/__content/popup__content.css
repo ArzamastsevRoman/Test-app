@@ -1,0 +1,19 @@
+.popup__content {
+    margin: 181px 74px 0;
+    width: 619px;
+    max-height: 425px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+@media screen and (max-width: 767px) {
+    .popup__content {
+        margin: 0;
+        width: 100%;
+        max-height: 100%;
+        flex-wrap: nowrap;
+    }
+}

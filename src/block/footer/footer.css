@@ -1,0 +1,18 @@
+@import url(./__title/footer__title.css);
+
+.footer {
+    margin: 0 20px 0;
+    width: calc(100% - 40px);
+    min-height: 56px;
+    position: absolute;
+    bottom: 0;
+    box-shadow: inset 0px 1px 0px #ccc;
+    display: flex;
+    align-items: center;
+}
+
+@media screen and (max-width: 767px) {
+    .footer {
+        position: relative;
+    }
+}

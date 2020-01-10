@@ -1,0 +1,16 @@
+@import url(./__card/result__card.css);
+
+.result {
+    margin: 0 20px 30px;
+    width: calc(100% - 40px);
+    display: grid;
+    grid-gap: 21px;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+@media screen and (max-width: 767px) {
+    .result {
+        grid-gap: 30px;
+        grid-template-columns: 1fr;
+    }
+}

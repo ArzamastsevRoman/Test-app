@@ -1,0 +1,10 @@
+.footer__title {
+    font-family: roboto;
+    margin: 12px auto 11px;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+    align-items: center;
+    color: #cccccc;
+}

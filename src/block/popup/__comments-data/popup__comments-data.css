@@ -1,0 +1,10 @@
+.popup__comments-data {
+    margin: 0;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+    align-items: center;
+    color: #999;
+}

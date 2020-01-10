@@ -1,0 +1,9 @@
+.header__title {
+    margin: 15px auto 30px;
+    font-family: roboto;
+    font-size: 36px;
+    font-weight: normal;
+    line-height: 42px;
+    text-transform: uppercase;
+    text-align: center;
+}
