@@ -1,0 +1,8 @@
+dist
+node_modules
+.log
+.vscode
+.sublime
+.idea
+Thumbs.db.
+DS_Store
