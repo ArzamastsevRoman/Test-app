@@ -44,13 +44,17 @@ export default class Api {
         this._comments = comments;
         return fetch(`${this._url}/${this._id}/comments`, {
             method: 'POST',
+            headers: {
+				'Content-Type': 'application/json'
+			},
             body: JSON.stringify({
                 name: `${this._name}`,
-                comments: `${this._comments}`
+                comment: `${this._comments}`
             })
         })
         .then(res => {
 			if(res.ok) {
+                console.log(res)
                 return res.json();
             } else {
                 alert(`${err}: ${err.status}`);
@@ -59,14 +63,14 @@ export default class Api {
         })
     }
 
-    getComments (id, comments) {
+    getComments (id) {
         this._id = id;
-        this._comments = comments;
-        return fetch(`${this._url}/${this._id}/comments`, {
+        return fetch(`${this._url}/${this._id}`, {
             method: 'GET'
         })
         .then(res => {
 			if(res.ok) {
+                
                 return res.json();
             } else {
                 alert(`${err}: ${err.status}`);

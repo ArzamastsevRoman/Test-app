@@ -24,9 +24,9 @@ export default class Card {
         this.getComment = this.getComment.bind(this);
         this.createComment = this.createComment.bind(this);
         this.clearForm = this.clearForm.bind(this);
+        this.addComment = this.addComment.bind(this);
 
-        this.popupButton.onclick = this.createComment;
-        this.popupButton.addEventListener('click', this.clearForm);
+        
         //this.popupButton.addEventListener('click', this.getComment);
     }
 
@@ -44,33 +44,39 @@ export default class Card {
         this.popup.setAttribute('style', 'display: block');
         apiImages.getImagePopup(this.id);
 
-        // apiImages.getComments(this.id)
-        //     .then((data) => {
-        //         console.log(data); 
-        //     })
-        //     .catch(err => { 
-        //         alert(`${err}: ${err.status}`);
-        //         console.log(`catch err: ${err}: ${err.status}`); 
-        //     });
+        apiImages.getComments(this.id)
+            .then((data) => {
+                console.log(data.comments[0]); 
+                for (let i=0; i<data.comments.length; i++) {
+                    this.createComment(data.comments[i].text, data.comments[i].date);
+                }
+            })
+            .catch(err => { 
+                alert(`${err}: ${err.status}`);
+                console.log(`catch err: ${err}: ${err.status}`); 
+            });
 
+            this.popupButton.onclick = this.addComment;
+            this.popupButton.addEventListener('click', this.clearForm);
         this.popup.querySelector('.popup__image').setAttribute('src', `${this.img}`);
     }
 
     close() {
         this.popup.setAttribute('style', 'display: none');
+        this.popup.querySelector('.popup__content-comments').removeChild(this.popup.querySelector('.popup__comments'));
     }
 
     getComment() {
-        apiImages.addComments(this.popupInputName.value, this.id, this.popupInputComment.value);
+        apiImages.addComments(this.id);
     }
 
-    createComment() {
+    createComment(comment, data) {
         const contentComments = this.popup.querySelector('.popup__content-comments');
-        
+
         const commentCard = document.createElement('div');
         commentCard.classList.add('popup__comments');
         contentComments.appendChild(commentCard);
-        
+
         const commentData = document.createElement('p');
         commentData.classList.add('popup__comments-data');
         commentCard.appendChild(commentData);
@@ -79,19 +85,21 @@ export default class Card {
         commentText.classList.add('popup__comments-text');
         commentCard.appendChild(commentText);
         
-        commentText.textContent = this.popupInputComment.value;
+        commentText.textContent = comment;
 
-        const today = new Date();
+        const today = new Date(data);
         const today_date = today.getDate();
         const today_month = today.getMonth() + 1;
         const today_year = today.getFullYear();
         const date = `${today_date}.${today_month}.${today_year}`;
 
         commentData.textContent = date;
-
-        apiImages.addComments(this.popupInputName.value, this.id, this.popupInputComment.value);
     }
 
+    addComment() {
+        apiImages.addComments(this.popupInputName.value, this.id, this.popupInputComment.value);
+    }
+    
     clearForm() {
         this.popupInputName.value = '';
         this.popupInputComment.value = '';
