@@ -11,7 +11,6 @@ export default class CardList {
     render() {
         if (window.innerWidth < 768) {
             for (let i = 0; i < 3; i++) {
-                //console.log(this.array[i].url)
                 const { resultCard } = new Card(this.array[i].url, this.array[i].id);
                 this.container.appendChild(resultCard);
                 this.resultCard = resultCard;

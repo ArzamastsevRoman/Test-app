@@ -25,9 +25,6 @@ export default class Card {
         this.createComment = this.createComment.bind(this);
         this.clearForm = this.clearForm.bind(this);
         this.addComment = this.addComment.bind(this);
-
-        
-        //this.popupButton.addEventListener('click', this.getComment);
     }
 
     create () {
@@ -44,9 +41,11 @@ export default class Card {
         this.popup.setAttribute('style', 'display: block');
         apiImages.getImagePopup(this.id);
 
+        this.popupButton.onclick = this.addComment;
+        this.popupButton.addEventListener('click', this.clearForm);
+
         apiImages.getComments(this.id)
             .then((data) => {
-                console.log(data.comments[0]); 
                 for (let i=0; i<data.comments.length; i++) {
                     this.createComment(data.comments[i].text, data.comments[i].date);
                 }
@@ -56,8 +55,6 @@ export default class Card {
                 console.log(`catch err: ${err}: ${err.status}`); 
             });
 
-            this.popupButton.onclick = this.addComment;
-            this.popupButton.addEventListener('click', this.clearForm);
         this.popup.querySelector('.popup__image').setAttribute('src', `${this.img}`);
     }
 
@@ -98,6 +95,17 @@ export default class Card {
 
     addComment() {
         apiImages.addComments(this.popupInputName.value, this.id, this.popupInputComment.value);
+        this.popup.querySelector('.popup__content-comments').removeChild(this.popup.querySelector('.popup__comments'));
+        apiImages.getComments(this.id)
+            .then((data) => {
+                for (let i=0; i<data.comments.length; i++) {
+                    this.createComment(data.comments[i].text, data.comments[i].date);
+                }
+            })
+            .catch(err => { 
+                alert(`${err}: ${err.status}`);
+                console.log(`catch err: ${err}: ${err.status}`); 
+            });
     }
     
     clearForm() {

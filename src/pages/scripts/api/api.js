@@ -52,15 +52,6 @@ export default class Api {
                 comment: `${this._comments}`
             })
         })
-        .then(res => {
-			if(res.ok) {
-                console.log(res)
-                return res.json();
-            } else {
-                alert(`${err}: ${err.status}`);
-            }
-            return Promise.reject(res);
-        })
     }
 
     getComments (id) {
@@ -70,7 +61,6 @@ export default class Api {
         })
         .then(res => {
 			if(res.ok) {
-                
                 return res.json();
             } else {
                 alert(`${err}: ${err.status}`);

@@ -19,7 +19,6 @@ const resultContent = document.querySelector('.result');
 
 apiImages.getImage()
     .then((data) => {
-        console.log(data); 
         const startCardList = new CardList (resultContent, data);
         startCardList.render();
     })
